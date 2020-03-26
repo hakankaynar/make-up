@@ -37,8 +37,8 @@ jobs:
         sleep 30
         
     - name: Run tests with coverage
-      run: coverage run -m unittest discover './test' '*_test.py'
+      run: coverage3 run -m unittest discover './test' '*_test.py'
       
     - name: Show coverage report
-      run: coverage report --include **/product/*.py  --fail-under 90  
+      run: coverage3 report --include **/product/*.py  --fail-under 90  
 
