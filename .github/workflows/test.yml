@@ -26,12 +26,10 @@ jobs:
       run: pip3 install -r requirements.txt
       
     - name: Set python path requirements
-      run: |
-        export PYTHONPATH=${PYTHONPATH}:${GITHUB_WORKSPACE}
-        echo $PYTHONPATH
-        ls ${GITHUB_WORKSPACE}
-        python --version
-        python3 --version
+      run: export PYTHONPATH=${PYTHONPATH}:${GITHUB_WORKSPACE}
+        
+    - name: Run elastic
+        docker run --rm -d --name elastic-search --net elastic-search -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.6.1
       
     - name: Run tests
       run: python3 -m unittest discover './test' '*_test.py'
