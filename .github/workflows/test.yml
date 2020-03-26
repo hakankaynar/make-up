@@ -22,14 +22,12 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
       
-
-    - name: Creating virtual env 
-      run: | 
-        python3 -m venv venv
-        source venv/bin/activate
-      
     - name: Install requirements
-      run: pip install -r requirements.txt
+      run: pip3 install -r requirements.txt
+  
+    - name: list files
+      run: ls -altrh ${GITHUB_WORKSPACE}
+      
       
     - name: Set python path requirements
       run: export PYTHONPATH=${PYTHONPATH}:${GITHUB_WORKSPACE}
@@ -43,7 +41,7 @@ jobs:
         sleep 15
         
     - name: Run tests with coverage
-      run: coverage run -m unittest discover './test' '*_test.py'
+      run: coverage3 run -m unittest discover './test' '*_test.py'
       
     - name: Show coverage report
       run: coverage report --include **/product/*.py  --fail-under 90  
