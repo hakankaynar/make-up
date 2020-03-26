@@ -21,9 +21,15 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+      
 
+    - name: Creating virtual env 
+      run: | 
+        python3 -m venv venv
+        source venv/bin/activate
+      
     - name: Install requirements
-      run: pip3 install -r requirements.txt
+      run: pip install -r requirements.txt
       
     - name: Set python path requirements
       run: export PYTHONPATH=${PYTHONPATH}:${GITHUB_WORKSPACE}
@@ -34,11 +40,11 @@ jobs:
     - name: Run elastic and wait sometime
       run:  |
         docker run --rm -d --name elastic-search --net elastic-search -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.6.1
-        sleep 30
+        sleep 15
         
     - name: Run tests with coverage
-      run: coverage3 run -m unittest discover './test' '*_test.py'
+      run: coverage run -m unittest discover './test' '*_test.py'
       
     - name: Show coverage report
-      run: coverage3 report --include **/product/*.py  --fail-under 90  
+      run: coverage report --include **/product/*.py  --fail-under 90  
 
