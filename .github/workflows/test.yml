@@ -29,6 +29,7 @@ jobs:
       run: |
         export PYTHONPATH=${PYTHONPATH}:${GITHUB_WORKSPACE}
         echo $PYTHONPATH
+        ls ${GITHUB_WORKSPACE}
       
     - name: Run tests
       run: python -m unittest discover './test' '*_test.py'
