@@ -31,9 +31,11 @@ jobs:
     - name: Create elastic network
       run: docker network create elastic-search
       
-    - name: Run elastic
-      run: docker run --rm -d --name elastic-search --net elastic-search -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.6.1
-      
+    - name: Run elastic and wait sometime
+      run:  |
+        docker run --rm -d --name elastic-search --net elastic-search -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.6.1
+        sleep 30
+        
     - name: Run tests
       run: python3 -m unittest discover './test' '*_test.py'
 
