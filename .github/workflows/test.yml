@@ -37,13 +37,16 @@ jobs:
         sleep 15
         
     - name: Run tests with coverage
-      run: python -m coverage run -m unittest discover './test' '*_test.py'
+      run: python3 -m coverage run -m unittest discover './test' '*_test.py'
 
     - name: Stop elastic search
       run: docker container stop elastic-search
 
+    - name: Delete elastic search network
+      run: docker network rm elastic-search
+
     - name: Show coverage report
-      run: python -m coverage report --include **/product/*.py  --fail-under 90
+      run: python3 -m coverage report --include **/product/*.py  --fail-under 90
 
 
 
