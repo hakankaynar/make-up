@@ -1,10 +1,13 @@
 from .product_model import Product
-from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import NotFoundError
+from .elastic_search_factory import ElasticSearchFactory
+from elasticsearch import Elasticsearch
 
 
 class ProductData:
-    __es = Elasticsearch()
+
+    def __init__(self):
+        self.__es = ElasticSearchFactory.create()
 
     def insert(self, product: Product):
         res = self.__es.index(index="test-index", id=product.id, body=product.to_json())
