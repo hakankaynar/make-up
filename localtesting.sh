@@ -9,7 +9,7 @@ echo "Setting up virtial environment"
 python3 -m venv venv && source venv/bin/activate
 
 echo "Installing requirements"
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 if [ "$NO_DOCKER" = "false" ]; then
   echo "Creating docker elastic search network"
@@ -26,10 +26,10 @@ echo "Configuring python path"
 export PYTHONPATH=${PYTHONPATH}:.
 
 echo "Running the tests"
-python -m coverage run -m unittest discover './test' '*_test.py'
+python3 -m coverage run -m unittest discover './test' '*_test.py'
 
 echo "Reporting coverage"
-python -m coverage report --include **/product/*.py  --fail-under 90
+python3 -m coverage report --include **/product/*.py  --fail-under 90
 
 if [ "$NO_DOCKER" = "false" ]; then
   echo "Stopping elastic search"

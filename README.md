@@ -24,4 +24,10 @@ curl --header "Content-Type: application/json" --request POST \
 curl http://localhost:5000/api/v1.0/product/3
 
 
+### Docker image
+Building: docker build -f .docker/Dockerfile --tag proj1:0.5 .
+Running terminal: docker container run -it --rm --name proj1 -p 5000:5000 proj1:0.5 bash
+Running already running: docker exec -it proj1 bash 
+
+
 

@@ -1,18 +1,18 @@
 import unittest
 
-from routes import app
+from routes import application
 
 
 class ProductsApiTest(unittest.TestCase):
 
     def setUp(self):
-        app.config['TESTING'] = True
-        app.config['WTF_CSRF_ENABLED'] = False
-        app.config['DEBUG'] = False
-        self.app = app.test_client()
+        application.config['TESTING'] = True
+        application.config['WTF_CSRF_ENABLED'] = False
+        application.config['DEBUG'] = False
+        self.application = application.test_client()
 
     def test_get_products_without_products(self):
-        response = self.app.get('/api/v1.0/products', follow_redirects=True)
+        response = self.application.get('/api/v1.0/products', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
 

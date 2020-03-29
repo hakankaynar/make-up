@@ -1,16 +1,16 @@
 import unittest
 import random
 
-from routes import app
+from routes import application
 
 
 class ProductApiIntegrationTest(unittest.TestCase):
 
     def setUp(self):
-        app.config['TESTING'] = True
-        app.config['WTF_CSRF_ENABLED'] = False
-        app.config['DEBUG'] = False
-        self.app = app.test_client()
+        application.config['TESTING'] = True
+        application.config['WTF_CSRF_ENABLED'] = False
+        application.config['DEBUG'] = False
+        self.app = application.test_client()
         self.product_id = random.randint(1, 100)
 
     def tearDown(self):
