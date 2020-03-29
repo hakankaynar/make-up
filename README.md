@@ -18,15 +18,15 @@
 
 #### Adding a product
 curl --header "Content-Type: application/json" --request POST \
---data '{"id":3,"name":"asd"}' http://localhost:5000/api/v1.0/product
+--data '{"id":3,"name":"asd"}' http://localhost:8000/api/v1.0/product
 
 #### Getting a product 
-curl http://localhost:5000/api/v1.0/product/3
+curl http://localhost:8000/api/v1.0/product/3
 
 
 ### Docker image
-Building: docker build -f .docker/Dockerfile --tag proj1:0.5 .
-Running terminal: docker container run -it --rm --name proj1 -p 5000:5000 proj1:0.5 bash
+Building: docker build -f .docker/Dockerfile --tag proj1:1.1 .
+Running terminal: docker container run -it --rm --name proj1 -p 8000:8000 -e MU_ES_HOST=elastic-search --net elastic-search proj1:1.1
 Running already running: docker exec -it proj1 bash 
 
 

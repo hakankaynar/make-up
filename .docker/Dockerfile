@@ -4,6 +4,8 @@ COPY ./ /root/make-up
 ENV PYTHONPATH=/root/make-up
 WORKDIR /root/make-up
 
-RUN pip install -r requirements.txt && pip install gunicorn
+RUN pip install -r requirements.txt
 
-EXPOSE 5000/tcp
+EXPOSE 8000/tcp
+
+CMD ["gunicorn", "--config", ".docker/gunicorn.conf.py", "routes" ]
