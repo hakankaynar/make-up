@@ -25,9 +25,9 @@ curl http://localhost:8000/api/v1.0/product/3
 
 
 ### Docker image
-Building: docker build -f .docker/Dockerfile --tag proj1:1.1 .
-Running terminal: docker container run -it --rm --name proj1 -p 8000:8000 -e MU_ES_HOST=elastic-search --net elastic-search proj1:1.1
-Running already running: docker exec -it proj1 bash 
+* Building: docker build -f .docker/Dockerfile --tag proj1:1.1 .
+* Running terminal: docker container run -it --rm --name proj1 -p 8000:8000 -e MU_ES_HOST=elastic-search --net elastic-search proj1:1.1
+* Running already running: docker exec -it proj1 bash 
 
 
 
